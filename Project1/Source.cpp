@@ -1,27 +1,50 @@
 #include<iostream>
 #include<cmath>
 #include<fstream>
+#include<ctime>
 using namespace std;
 
+//a = rows
+//b = cols
 
+void fix(int a, int b) {
+	int** arr = new int* [a];
+	for (int i = 0; i < a; i++)
+	{
+		arr[i] = new int[b];
+	};
+	
+	for (int i,c = 0; c < b; i++) {
+		if (i = (a - 1)) {
+			i = 0;
+			c++;
+		};
+		cout << arr[i][c] << endl;
+	};
+
+	for (int i = 0; i < a; i++)
+	{
+		delete[] arr[i];
+	};
+	delete[] arr;
+}
 
 int main() {
 	setlocale(LC_ALL, "Rus");
-	ifstream file;
-	file.open("C:\\Users\\alexe\\Documents\\My Games\\Terraria\\Worlds\\1.wld");
+	srand(time(NULL));
 
-	if (file.is_open()) {
-		cout << "Kk" << endl;
-	}
-	else {
-		cout << "Bad" << endl;
+	int a = rand()%10;
+	while (a == 0) {
+		a = rand() % 10;
 	};
 
-	int n = 10;
-	char* buffer = new char[n + 1]; buffer[n] = 0;
-	file.read(buffer, n);
-	cout << buffer;
-	delete[] buffer;
+	int b = rand()%10;
+	while (b == 0)
+	{
+		b = rand() % 10;
+	};
 
+	cout << a << endl << b << endl;
+	fix(a, b);
 	return NULL;
 }
